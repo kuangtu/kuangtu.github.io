@@ -1,0 +1,15 @@
+---
+layout:     post
+title:      "<<李鸿章传>>读书笔记"
+date:       2018-09-08
+author:     "莫大"
+header-img: "img/lihongzhang.jpg"
+tags:
+    - 读书
+    - 历史
+---
+
+> 记录读书的点点滴滴。
+
+
+## 作者和背景
