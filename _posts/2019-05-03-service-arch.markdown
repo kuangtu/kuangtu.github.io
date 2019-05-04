@@ -28,4 +28,4 @@ tags:
 ## 微服务架构导图
 基于各章内容，我通过xmind做了一个基本的思维导图，后续根据需要各方面再输入实践。
 
-![](C:\moxuansheng\workspace\kuangtu.github.io\img\service-arch-xmind.jpg)
+![微服务架构导图](img/service-arch-xmind.jpg)
