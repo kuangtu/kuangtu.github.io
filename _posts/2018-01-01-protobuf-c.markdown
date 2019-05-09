@@ -3,10 +3,11 @@ layout:     post
 title:      "protobuf-c安装和使用"
 date:       2018-01-01
 author:     "莫大"
-header-img: ""
+header-img: "img/protobuf.jpg"
 tags:
     - 读书
-    - 技术
+    - 技术   
+    - 消息传输
 ---
 
 > 记录技术成长的点点滴滴。
@@ -59,13 +60,75 @@ yum install libtool
 
 （2）protobuf-c源代码cxx-generate-packed-data.cc:1001行有个bug，需要修改如下所示：
 
+![编译错误](img/protobuf-c-bug.jpg)
+
 
 
 ## ProtoBuf-C使用
 
 安装完成之后，基于[示例](https://github.com/protobuf-c/protobuf-c/wiki/Examples) 中的例子对于单个消息、重复field、子消息等不同的情况进行分析。
 
+### 单个消息
 
+基于ProtoBuf语法，定义单个消息为：
+
+```c
+syntax = "proto2";
+message AMessage {
+  required int32 a=1; 
+  optional int32 b=2;
+}
+```
+
+该消息中先通过"syntax"定义了protobuf的协议版本。消息中包含了两个字段，字段a是必须的，b是可选的。
+
+然后通过`protoc-c`生成.c和.h文件。
+
+```c
+ protoc-c --c_out=. amessage.proto 
+```
+
+其中.h文件主要内容如下：
+
+```c
+typedef struct _AMessage AMessage;
+/* --- enums --- */
+/* --- messages --- */
+struct  _AMessage
+{
+  ProtobufCMessage base;
+  int32_t a;
+  protobuf_c_boolean has_b;
+  int32_t b;
+};
+/* AMessage methods */
+void   amessage__init
+                     (AMessage         *message);
+size_t amessage__get_packed_size
+                     (const AMessage   *message);
+size_t amessage__pack
+                     (const AMessage   *message,
+                      uint8_t             *out);
+size_t amessage__pack_to_buffer
+                     (const AMessage   *message,
+                      ProtobufCBuffer     *buffer);
+AMessage *
+       amessage__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   amessage__free_unpacked
+                     (AMessage *message,
+                      ProtobufCAllocator *allocator);
+```
+
+其中，
+
+（1）amessage__get_packed_size得到消息压缩时的大小；
+
+（2）amessage__pack压缩消息；
+
+（3）amessage__unpack解压消息。
 
 ## 参考文献
 
