@@ -60,7 +60,7 @@ yum install libtool
 
 （2）protobuf-c源代码cxx-generate-packed-data.cc:1001行有个bug，需要修改如下所示：
 
-![编译错误](img/protobuf-c-bug.jpg)
+![编译错误](/img/protobuf-c-bug.jpg)
 
 
 
@@ -129,6 +129,52 @@ void   amessage__free_unpacked
 （2）amessage__pack压缩消息；
 
 （3）amessage__unpack解压消息。
+
+.c文件主要对于上面的方法进行定义。后续压缩、解压过程中，需要使用这些方法，因此编译成动态链接库。
+
+```
+gcc -I /usr/local/protobuf-c/include/ -c dmessage.pb-c.c
+```
+
+### 消息序列化
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include "amessage.pb-c.h"
+
+int main (int argc, const char * argv[]) 
+{
+  AMessage msg = AMESSAGE__INIT; // AMessage
+  void *buf;                     // Buffer to store serialized data
+  unsigned len;                  // Length of serialized data
+  
+  if (argc != 2 && argc != 3)
+  {   // Allow one or two integers
+    fprintf(stderr,"usage: amessage a [b]\n");
+    return 1;
+  }
+  
+  msg.a = atoi(argv[1]);
+  if (argc == 3) { msg.has_b = 1; msg.b = atoi(argv[2]); }
+  len = amessage__get_packed_size(&msg);
+  
+  buf = malloc(len);
+  amessage__pack(&msg,buf);
+  
+  fprintf(stderr,"Writing %d serialized bytes\n",len); // See the length of message
+  fwrite(buf,len,1,stdout); // Write to stdout to allow direct command line piping
+  
+  free(buf); // Free the allocated serialized buffer
+  return 0;
+}
+```
+
+初始化消息msg，通过amessage__get_packed_size得到消息序列化后的大小，分配buffer之后，通过 
+
+amessage__pack将Amessage序列化到buf中。
+
+
 
 ## 参考文献
 
