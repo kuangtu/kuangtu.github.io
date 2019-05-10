@@ -174,10 +174,11 @@ int main (int argc, const char * argv[])
 
 amessage__pack将Amessage序列化到buf中。
 
+### 消息反序列化
 
+序列化过程中将
 
 ## 参考文献
-
 1. <https://blog.csdn.net/zlf19910726/article/details/79911676>
 2. <https://blog.csdn.net/kid_2412/article/details/52275582>
 3. <https://blog.csdn.net/programmer_h/article/details/8890800>
