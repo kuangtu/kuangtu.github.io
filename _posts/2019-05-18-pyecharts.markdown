@@ -292,7 +292,7 @@ datazoom_opts=[opts.DataZoomOpts()]
 
 绘制图形如下：
 
-![强弱走势](img/rsi.jpg)
+![强弱走势](/img/rsi.jpg)
 
 其中，通过
 
@@ -304,7 +304,7 @@ tooltip_opts=opts.TooltipOpts(trigger="axis", axis_pointer_type="cross"),
 
 效果如下所示：
 
-![指示器](img/rsi_cross.jpg)
+![指示器](/img/rsi_cross.jpg)
 
 
 
