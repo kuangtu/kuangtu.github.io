@@ -44,7 +44,7 @@ add() 接口拆分，现在的 add() 接口做了太多的事情了。
 1. online 模式，使用 pyecharts 官方提供的 assets host，或者部署自己的 remote host。
 2. local 模式，使用自己本地开启的文件服务提供 assets host，会提供一键启动的脚本，方便部署。
 
-理由
+理由：
 
 1. 现在的 pyecharts 插件机制分散，管理/升级并没有想象中的方便，而且分开为 jupyter/local render 两种情况，这就导致了两个要分开管理，虽然我们的 pip 包可以同时 update 这两种情况引用的 assets，但是由于存在缓存等因素，并不能保证每次都到正确的更新。
 2. pyecharts 不用再依赖这些包，依赖包和 pyecharts 包版本的管理也是一个容易出问题的地方。
@@ -170,6 +170,8 @@ datazoom_opts=[opts.DataZoomOpts()]
 
 绘制图形如下：
 
+![K线图](/img/kline.jpg)
+
 
 
 ## 绘制移动平均线
@@ -194,7 +196,7 @@ datazoom_opts=[opts.DataZoomOpts()]
 
 绘制图形如下：
 
-
+![移动平均线](/img/mvline.jpg)
 
 
 
@@ -290,7 +292,7 @@ datazoom_opts=[opts.DataZoomOpts()]
 
 绘制图形如下：
 
-
+![强弱走势](img/rsi.jpg)
 
 其中，通过
 
@@ -301,6 +303,16 @@ tooltip_opts=opts.TooltipOpts(trigger="axis", axis_pointer_type="cross"),
 设置了浏览图片时的提示方式，基于十字准星指示器。
 
 效果如下所示：
+
+![指示器](img/rsi_cross.jpg)
+
+
+
+# 小结
+
+pyecharts中涉及到的内容非常多，对于很多细节配置可以在使用中逐步进行查询确认。
+
+另外，强烈推荐王圣元大神的微信公众号“王的机器”。
 
 
 
