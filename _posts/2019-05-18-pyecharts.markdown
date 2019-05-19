@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      "pyecharts绘制金融股票数据"
+date:       2019-05-18
+author:     "莫大"
+header-img: "img/main_pyecharts.jpg"
+tags:
+    - 读书
+    - 技术
+---
+
+> 记录技术成长的点点滴滴。
+
 # pyecharts 1.0 版本使用基本方法
 
 Echarts 是一个由百度开源的数据可视化工具，凭借着良好的交互性，精巧的图表设计，得到了众多开发者的认可，“前辈们”基于python，创造了pyecharts。作图效果非常好。
