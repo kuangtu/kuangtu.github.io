@@ -1,0 +1,25 @@
+---
+layout:     post
+title:      "islide插件安装"
+date:       2020-04-05
+author:     "莫大"
+header-img: "img/islide_main.jpg"
+tags:
+    - 读书
+    - PPT
+---
+
+> PPT插件安装。
+
+人有四急，PPT是之一。islide是一款非常好用的PPT制作神器。但是在安装过程中，会出现无法COM插件无法加载的情况，搜索了一下，碰到问题的人还真不少。
+我参照islide官方给出的方法，[安装成功后，菜单栏里不显示iSlide](https://support.islide.cc/hc/zh-cn/articles/360022986093-%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%E5%90%8E-%E8%8F%9C%E5%8D%95%E6%A0%8F%E9%87%8C%E4%B8%8D%E6%98%BE%E7%A4%BAiSlide)
+
+【解决方案 4 】：
+- 定位到 C:\Windows\assembly\GAC_MSIL\office 文件夹下，重命名下面的文件夹后缀加上.bak
+- 定位到 C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.PowerPoint，重命名下面的文件夹后缀加上.bak
+- 尝试重新启动 PPT 加载项中勾选 iSlide
+
+解决成功了。
+
+
+
