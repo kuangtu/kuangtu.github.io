@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/08/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>hexo+github+Next搭建博客</title>
+    <url>/2021/08/14/build-blog/</url>
+    <content><![CDATA[<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><p>根据官网hexo框架安装指引，依赖：Node.js和git。笔者安装了V14.17.4版本。</p>
+<p>安装hexo:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h1 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h1><p>取项目名称为localhexo进行初始化，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init localhexo</span><br></pre></td></tr></table></figure>
+
+<p>初始化创建完成之后，在localhexo目录下面会有source、themes等目录。</p>
+<p>进入到localhexo目录中生成静态HMTL页面，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>在public目录下面会生成js、css等目录。</p>
+<p>启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/build-blog-jpg/hexoserver.jpg" alt="hexoserver"></p>
+<p>根据提示，在本地4000端口提供了访问。浏览器输入:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://localhost:4000</span><br></pre></td></tr></table></figure>
+
+<p>可以看到页面信息了：</p>
+<p><img src="/img/build-blog-jpg/hexmainpage.jpg" alt="hexmainpage"></p>
+<p>安装、部署、启动过程非常简洁。^_^</p>
+<h1 id="Github页面创建和部署"><a href="#Github页面创建和部署" class="headerlink" title="Github页面创建和部署"></a>Github页面创建和部署</h1><p>首先在github上面创建仓库，名称为：username.github.io。</p>
+<p>然后修改localhexo目录下_config.yml配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  repo: https://github.com/kuangtu/kuangtu.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p> 本地配置完成之后，执行命令部署：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>显示信息：</p>
+<p><img src="/img/build-blog-jpg/hexdeploy_err.jpg" alt="hexdeploy_err"></p>
+<p>需要安装git部署插件，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>安装完成之后，执行部署，会弹出登录框录入github账户和密码：</p>
+<p><img src="/img/build-blog-jpg/githublogin.jpg" alt="githublogin"></p>
+<p><u>然后访问kuangtu.github.io出现了404，因为之前临时创建过kuangtu.github.io仓库，并绑定过自己的域名。</u></p>
+<p><u>因此增加CNAME文件配置了域名。可以访问了。</u></p>
+<p><img src="/img/build-blog-jpg/hexo_zt1.jpg" alt="hexo_zt1"></p>
+<p><u>404的情况比较常见，可以先在本地<code>hexo server</code>运行是否正常。</u> </p>
+<h2 id="博客源代码上传"><a href="#博客源代码上传" class="headerlink" title="博客源代码上传"></a>博客源代码上传</h2><p>通过<code>hexo deploy</code>部署之后，实际是将本地public目录下面的内容push到github。</p>
+<p>如果需要将本地源代码等都上传到github，可以创建分支然后push上去。</p>
+<p>虽然<code>hexo deploy</code> 可以部署到github上面，但本地目录不是git仓库，执行命令：</p>
+<p><img src="/img/build-blog-jpg/notgitrepo.jpg" alt="notgitrepo"></p>
+<p>可以初始化git仓库，创建分支，推送到github。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git checkout -b <span class="built_in">source</span></span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">&quot;create blog&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后推送到github站点：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:kuangtu/kuangtu.github.io.git</span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
+
+<p>通过github网站可以看到多了source分支，包含了源代码：</p>
+<p><img src="/img/build-blog-jpg/source%E5%88%86%E6%94%AF.jpg" alt="source分支"></p>
+<h1 id="主题修改"><a href="#主题修改" class="headerlink" title="主题修改"></a>主题修改</h1><p>hexo有非常多的主题，可以下载配置不同的主题类型。比较流行的有Next主题，可以通过github下载之后进行替换。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+
+<p>本地themes目录下多了next主题。修改本地的_config.yml：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<p>然后重新生成页面并启动服务，访问本地连接：</p>
+<p><img src="/img/build-blog-jpg/nexttheme.jpg" alt="nexttheme"></p>
+<p>主题已经替换了。</p>
+<h1 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h1><p>本地目录下的_config.yml为站点配置目录，各主题下面的_config.yml为主题配置。</p>
+<p>先对于站点进行修改。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">莫大的博客</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;证券、金融&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">莫大</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时访问页面看到已经做了更新：</p>
+<p><img src="/img/build-blog-jpg/site_conf.jpg" alt="site_conf"></p>
+<h1 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h1><p>hexo使用了markdown格式编写博客。md文件放置在本地的<code>source/_posts</code>目录中。</p>
+<h1 id="FQA"><a href="#FQA" class="headerlink" title="FQA"></a>FQA</h1><h2 id="主题修改部署后没有效果"><a href="#主题修改部署后没有效果" class="headerlink" title="主题修改部署后没有效果"></a>主题修改部署后没有效果</h2><p> 通过<code>hexo clean</code> 清理后再生成上传。</p>
+<h2 id="CNAME文件如何上传"><a href="#CNAME文件如何上传" class="headerlink" title="CNAME文件如何上传"></a>CNAME文件如何上传</h2><p>在source目录下创建CNAME文件，<code>hexo g</code>之后会在public目录下面生成CNAME文件，再<code>hex deploy</code>进行部署。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://hexo.io/docs/">hexo官网</a></p>
+<p><a href="https://cuiqingcai.com/7625.html">利用 GitHub + Hexo + Next 从零搭建一个博客</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/96641789">Hexo + GitHub Pages 搭建个人博客及 NexT 主题配置</a></p>
+]]></content>
+      <tags>
+        <tag>hexo github Next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim配置编译生成gvim</title>
+    <url>/2021/08/21/gvim-compile/</url>
+    <content><![CDATA[<h1 id="源代码编译生成gvim"><a href="#源代码编译生成gvim" class="headerlink" title="源代码编译生成gvim"></a>源代码编译生成gvim</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>笔者使用RedHat7.6版本进行开发工作，gcc升级之后为8.5.0，glibc为2.25。</p>
+<p>系统默认的vim版本是：，如果需要安装默认的gvim，使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install vim-X11</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>gvim</code>，可以看到版本是：</p>
+<p><img src="/img/gvim-compile/%E9%BB%98%E8%AE%A4gvim%E7%89%88%E6%9C%AC.jpg" alt="默认gvim版本"></p>
+<p><strong>但是发现启动gvim之后不能输入中文。输入法切换至拼音输入法之后，无法在insert模式下输入。</strong></p>
+<h2 id="源代码编译vim8-0"><a href="#源代码编译vim8-0" class="headerlink" title="源代码编译vim8.0"></a>源代码编译vim8.0</h2><p>通过 <a href="https://ftp.nluug.nl/pub/vim/unix/">FTP网站</a> 下载vim8.0版本上传至主机，解压。configure参数如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./configure --prefix=/home/softinstall/<span class="built_in">local</span> --enable-luainterp --enable-cscope --with-x --enable-gui=gtk3  --with-features=huge --enable-xim  --enable-multibyte &gt;config.txt</span><br></pre></td></tr></table></figure>
+
+<p>打开config.txt，发现X11header文件没有，没有GUI支持。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">checking <span class="keyword">if</span> X11 header files can be found... no</span><br><span class="line">checking --enable-gui argument... no GUI support</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="gui编译方法"><a href="#gui编译方法" class="headerlink" title="gui编译方法"></a>gui编译方法</h2><p>阅读了INSTALL，其中有说明通常会安装devel包。configure配置中gui方式基于gtk3。安装以下包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install libX11-devel</span><br><span class="line">yum install gtk3-devel</span><br><span class="line">yum install libXt-devel</span><br></pre></td></tr></table></figure>
+
+<p>gtk3-devel同时会安装部分依赖包：</p>
+<p><img src="/img/gvim-compile/gtk3%E5%AE%89%E8%A3%85.jpg" alt="gtk3安装"></p>
+<p>configure之后，可以看到enable-gui已经支持了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">checking <span class="keyword">if</span> X11 header files can be found... yes</span><br><span class="line">checking <span class="keyword">for</span> _XdmcpAuthDoIt <span class="keyword">in</span> -lXdmcp... no</span><br><span class="line">checking <span class="keyword">for</span> IceOpenConnection <span class="keyword">in</span> -lICE... yes</span><br><span class="line">checking <span class="keyword">for</span> XpmCreatePixmapFromData <span class="keyword">in</span> -lXpm... no</span><br><span class="line">checking <span class="keyword">if</span> X11 header files implicitly <span class="built_in">declare</span> <span class="built_in">return</span> values... no</span><br><span class="line">checking size of wchar_t is 2 bytes... no</span><br><span class="line">checking --enable-gui argument... GTK+ 3.x GUI support</span><br></pre></td></tr></table></figure>
+
+<p>然后编译，此时可以生成gvim了。</p>
+]]></content>
+      <tags>
+        <tag>vim gvim gtk3</tag>
+      </tags>
+  </entry>
+</search>

@@ -193,6 +193,16 @@ hexo使用了markdown格式编写博客。md文件放置在本地的```source/_p
 
 
 
+# FQA
+
+## 主题修改部署后没有效果
+
+ 通过```hexo clean``` 清理后再生成上传。
+
+## CNAME文件如何上传
+
+在source目录下创建CNAME文件，```hexo g```之后会在public目录下面生成CNAME文件，再```hex deploy```进行部署。
+
 # 参考
 
 [hexo官网](https://hexo.io/docs/)

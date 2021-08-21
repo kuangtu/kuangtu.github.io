@@ -105,3 +105,10 @@ deploy:
   type: 'git'
   repo: git@github.com:kuangtu/kuangtu.github.io
   branch: main
+
+search:
+path: search.xml
+field: post
+format: html
+limit: 1000
+
