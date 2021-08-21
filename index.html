@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-22 00:00:03" itemprop="dateModified" datetime="2021-08-22T00:00:03+08:00">2021-08-22</time>
+                <time title="修改时间：2021-08-22 00:07:41" itemprop="dateModified" datetime="2021-08-22T00:07:41+08:00">2021-08-22</time>
               </span>
 
           
@@ -230,7 +230,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="源码编译生成gvim"><a href="#源码编译生成gvim" class="headerlink" title="源码编译生成gvim"></a>源码编译生成gvim</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>笔者使用RedHat7.6版本进行开发工作，gcc升级之后为8.5.0，glibc为2.25。</p>
+          <h1 id="源代码编译生成gvim"><a href="#源代码编译生成gvim" class="headerlink" title="源代码编译生成gvim"></a>源代码编译生成gvim</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>笔者使用RedHat7.6版本进行开发工作，gcc升级之后为8.5.0，glibc为2.25。</p>
 <p>系统默认的vim版本是：，如果需要安装默认的gvim，使用命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install vim-X11</span><br></pre></td></tr></table></figure>
 
@@ -248,7 +248,10 @@
 <h2 id="gui编译方法"><a href="#gui编译方法" class="headerlink" title="gui编译方法"></a>gui编译方法</h2><p>阅读了INSTALL，其中有说明通常会安装devel包。configure配置中gui方式基于gtk3。安装以下包：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install libX11-devel</span><br><span class="line">yum install gtk3-devel</span><br><span class="line">yum install libXt-devel</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![gtk3安装](/img/gvim-compile/gtk3安装.jpg)</span><br><span class="line"></span><br><span class="line">**其中需要注意```libXt-devel```的安装 。**</span><br><span class="line"></span><br><span class="line">```configure```之后，可以看到enable-gui已经支持了。</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">checking if X11 header files can be found... yes</span><br><span class="line">checking for _XdmcpAuthDoIt in -lXdmcp... no</span><br><span class="line">checking for IceOpenConnection in -lICE... yes</span><br><span class="line">checking for XpmCreatePixmapFromData in -lXpm... no</span><br><span class="line">checking if X11 header files implicitly declare return values... no</span><br><span class="line">checking size of wchar_t is 2 bytes... no</span><br><span class="line">checking --enable-gui argument... GTK+ 3.x GUI support</span><br></pre></td></tr></table></figure>
+<p>gtk3-devel同时会安装部分依赖包：</p>
+<p><img src="/img/gvim-compile/gtk3%E5%AE%89%E8%A3%85.jpg" alt="gtk3安装"></p>
+<p>configure之后，可以看到enable-gui已经支持了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">checking <span class="keyword">if</span> X11 header files can be found... yes</span><br><span class="line">checking <span class="keyword">for</span> _XdmcpAuthDoIt <span class="keyword">in</span> -lXdmcp... no</span><br><span class="line">checking <span class="keyword">for</span> IceOpenConnection <span class="keyword">in</span> -lICE... yes</span><br><span class="line">checking <span class="keyword">for</span> XpmCreatePixmapFromData <span class="keyword">in</span> -lXpm... no</span><br><span class="line">checking <span class="keyword">if</span> X11 header files implicitly <span class="built_in">declare</span> <span class="built_in">return</span> values... no</span><br><span class="line">checking size of wchar_t is 2 bytes... no</span><br><span class="line">checking --enable-gui argument... GTK+ 3.x GUI support</span><br></pre></td></tr></table></figure>
 
 <p>然后编译，此时可以生成gvim了。</p>
 
